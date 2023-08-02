@@ -14,11 +14,11 @@ public class ProductDaoImpl implements ProductDao {
 
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
-	
+
 	@Transactional
 	public void addProduct(Product product) {
 		// Add Product
-		this.hibernateTemplate.save(product);
+		this.hibernateTemplate.saveOrUpdate(product);
 	}
 
 	public List<Product> getAllProducts() {
@@ -26,9 +26,11 @@ public class ProductDaoImpl implements ProductDao {
 		return productList;
 	}
 
-	public void updateProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+	public Product getProductById(String productId) {
+
+		Product product = this.hibernateTemplate.get(Product.class, productId);
+		return product;	
+
 	}
 
 	@Transactional

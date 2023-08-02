@@ -59,4 +59,13 @@ public class HomePageController {
 		redirectView.setUrl(url);
 		return redirectView;
 	}
+	@RequestMapping(path = "update-product/{productId}")
+	public String showUpdateProductForm(@PathVariable(name = "productId") String productId, Model model)
+	{
+		Product product = this.productService.getProduct(productId);
+		model.addAttribute("title", "Update Product Form");
+		model.addAttribute("product",product);
+		return "update-product-form";
+		
+	}
 }
